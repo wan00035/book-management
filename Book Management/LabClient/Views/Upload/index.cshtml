@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "XML Validator";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    @model XMLandSchemaFileUpload
+
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+        <div class="form-group row">
+            <label asp-for="SchemaFile" class="col-sm-2 col-form-label">Schema File:</label>
+            <div class="col-sm-10">
+                <input asp-for="SchemaFile" type="file" accept=".xsd" required class="form-control-file">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="XmlFile" class="col-sm-2 col-form-label">XML File:</label>
+            <div class="col-sm-10">
+                <input asp-for="XmlFile" type="file" accept=".xml" required class="form-control-file">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <button type="submit">Validate</button>
+            </div>
+        </div>
+    </form>
+</div>

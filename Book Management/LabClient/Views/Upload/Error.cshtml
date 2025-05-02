@@ -1,0 +1,28 @@
+﻿@model List<XmlValidationError>
+
+<h2>Validation Result</h2>
+<p>The following errors were found when validating XML file @ViewData["XmlFileName"] against the schema @ViewData["SchemaFileName"].</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>XML Element</th>
+            <th>Error Type</th>
+            <th>Line Number</th>
+            <th>Column Number</th>
+            <th>Error Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var error in Model)
+        {
+            <tr>
+                <td>@error.Element</td>
+                <td>@error.ErrorType</td>
+                <td>@error.Line</td>
+                <td>@error.Column</td>
+                <td>@error.Message</td>
+            </tr>
+        }
+    </tbody>
+</table>

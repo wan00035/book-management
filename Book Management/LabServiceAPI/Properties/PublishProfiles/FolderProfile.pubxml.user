@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\WebServices\RestaurantReviewServiceAPI</_PublishTargetUrl>
+    <History>True|2023-12-10T03:34:51.9985106Z;True|2023-11-20T20:55:47.4795573-05:00;True|2023-11-20T20:18:06.9063971-05:00;True|2023-11-20T17:18:08.3447666-05:00;False|2023-11-20T17:15:50.1988750-05:00;False|2023-11-20T17:13:30.9398104-05:00;False|2023-11-20T17:10:03.3462045-05:00;True|2023-11-19T12:36:40.4394569-05:00;True|2023-03-03T09:55:38.1443924-05:00;True|2023-02-28T12:54:24.0097898-05:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

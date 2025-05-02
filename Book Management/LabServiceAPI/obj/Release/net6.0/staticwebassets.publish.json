@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "uSDAWChAXUtqvafMnDYswKyAB10Xg2At8QY4fMaKt3c=",
+  "Source": "LabServiceAPI",
+  "BasePath": "_content/LabServiceAPI",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

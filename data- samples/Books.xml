@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Books>
+  <Book BookID="6">
+    <Title>To Kill a Mockingbird</Title>
+    <Author>Harper Lee</Author>
+    <PublicationYear>1960-01-01</PublicationYear>
+    <IsCheckedOut>false</IsCheckedOut>
+  </Book>
+</Books>

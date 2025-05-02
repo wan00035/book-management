@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Books>
+  <Book BookID="1">
+    <Title>To Kill a Mockingbird</Title>
+    <Author>Harper Lee</Author>
+    <PublishYear>1960-01-01</PublishYear> 
+    <IsCheckedOut>false</IsCheckedOut>
+  </Book>
+  <Book BookID="2">
+    <Title>1984</Title>
+
+    <PublicationYear>1949-01-01</PublicationYear>
+    <IsCheckedOut>true</IsCheckedOut>
+  </Book>
+  

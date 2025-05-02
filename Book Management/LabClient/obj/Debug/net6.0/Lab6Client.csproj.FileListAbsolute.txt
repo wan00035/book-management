@@ -1,0 +1,149 @@
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\appsettings.Development.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\appsettings.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\Lab6Client.staticwebassets.runtime.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\Lab6Client.exe
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\Lab6Client.deps.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\Lab6Client.runtimeconfig.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\Lab6Client.dll
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\bin\Debug\net6.0\Lab6Client.pdb
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.csproj.AssemblyReference.cache
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfoInputs.cache
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfo.cs
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.csproj.CoreCompileInputs.cache
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.MvcApplicationPartsAssemblyInfo.cache
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cache
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cs
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\staticwebassets.build.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\staticwebassets.development.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\scopedcss\bundle\Lab6Client.styles.css
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\scopedcss\projectbundle\Lab6Client.bundle.scp.css
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.dll
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\refint\Lab6Client.dll
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.pdb
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\Lab6Client.genruntimeconfig.cache
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6Client\obj\Debug\net6.0\ref\Lab6Client.dll
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.GeneratedMSBuildEditorConfig.editorconfig
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfoInputs.cache
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfo.cs
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.csproj.CoreCompileInputs.cache
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.MvcApplicationPartsAssemblyInfo.cache
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cache
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cs
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.dll
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\refint\Lab6Client.dll
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.pdb
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\appsettings.Development.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\appsettings.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.staticwebassets.runtime.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.exe
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.deps.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.runtimeconfig.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.dll
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.pdb
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.Lab6Client.Microsoft.AspNetCore.StaticWebAssets.props
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.build.Lab6Client.props
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Lab6Client.props
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Lab6Client.props
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets.pack.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets.build.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets.development.json
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\scopedcss\bundle\Lab6Client.styles.css
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\scopedcss\projectbundle\Lab6Client.bundle.scp.css
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.genruntimeconfig.cache
+\\Mac\Home\Downloads\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\ref\Lab6Client.dll
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.csproj.AssemblyReference.cache
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfoInputs.cache
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfo.cs
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.csproj.CoreCompileInputs.cache
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cache
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cs
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.dll
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\refint\Lab6Client.dll
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.pdb
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\appsettings.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.staticwebassets.runtime.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.exe
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.deps.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.runtimeconfig.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.dll
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\bin\Debug\net6.0\Lab6Client.pdb
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.Lab6Client.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.build.Lab6Client.props
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Lab6Client.props
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Lab6Client.props
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\scopedcss\bundle\Lab6Client.styles.css
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\scopedcss\projectbundle\Lab6Client.bundle.scp.css
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\Lab6Client.genruntimeconfig.cache
+C:\Users\linna\Downloads\lab6-XiaonaWan (1)\Lab6 - Partial Completed\Lab6Client\obj\Debug\net6.0\ref\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.csproj.AssemblyReference.cache
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfoInputs.cache
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.AssemblyInfo.cs
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.csproj.CoreCompileInputs.cache
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cache
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cs
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\refint\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.pdb
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\appsettings.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\Lab6Client.staticwebassets.runtime.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\Lab6Client.exe
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\Lab6Client.deps.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\Lab6Client.runtimeconfig.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\bin\Debug\net6.0\Lab6Client.pdb
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.Lab6Client.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.build.Lab6Client.props
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Lab6Client.props
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Lab6Client.props
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\scopedcss\bundle\Lab6Client.styles.css
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\scopedcss\projectbundle\Lab6Client.bundle.scp.css
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\Lab6Client.genruntimeconfig.cache
+C:\Users\linna\OneDrive\Desktop\final\final\Lab6Client\obj\Debug\net6.0\ref\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\appsettings.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\Lab6Client.staticwebassets.runtime.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\Lab6Client.exe
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\Lab6Client.deps.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\Lab6Client.runtimeconfig.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\bin\Debug\net6.0\Lab6Client.pdb
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.csproj.AssemblyReference.cache
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.AssemblyInfoInputs.cache
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.AssemblyInfo.cs
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.csproj.CoreCompileInputs.cache
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cache
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.RazorAssemblyInfo.cs
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\staticwebassets\msbuild.Lab6Client.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\staticwebassets\msbuild.build.Lab6Client.props
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Lab6Client.props
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Lab6Client.props
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\scopedcss\bundle\Lab6Client.styles.css
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\scopedcss\projectbundle\Lab6Client.bundle.scp.css
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\refint\Lab6Client.dll
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.pdb
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\Lab6Client.genruntimeconfig.cache
+C:\Users\linna\OneDrive\Desktop\final\final\LabClient\obj\Debug\net6.0\ref\Lab6Client.dll

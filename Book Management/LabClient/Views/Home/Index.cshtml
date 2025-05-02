@@ -1,0 +1,83 @@
+﻿@model List<Book>
+
+@{
+    ViewData["Title"] = "Books Overview";
+}
+
+<h1>Books Overview</h1>
+<a href="@Url.Action("Index", "Upload")">Go to Upload Page</a>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <a asp-action="New">Add a New Book</a>
+    </div>
+    <div class="col-md-8">
+        <span class="alert-info">@ViewBag.Confirmation</span>
+    </div>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Publication Year
+            </th>
+            <th>
+                Is Checked Out
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Author
+                </td>
+                <td>
+                    @item.PublicationYear.ToString("yyyy")
+                </td>
+                <td>
+                    @(item.IsCheckedOut ? "Yes" : "No")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BookID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BookID" data-name="@item.Title" class="delete">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.delete').on('click', function (e) {
+                    e.preventDefault();
+                    var link = $(this).attr('href');
+                    var bookName = $(this).data('name');
+
+                    if (confirm('Are you sure you want to delete this book: ' + bookName + '?')) {
+                        window.location.href = link;
+                    }
+                });
+            });
+        </script>
+    }
+
+</table>
+

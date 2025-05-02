@@ -1,0 +1,8 @@
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\Data\restaurant_review.xml
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\Lab6ServiceAPI.exe
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\Lab6ServiceAPI.dll
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\Lab6ServiceAPI.deps.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\Lab6ServiceAPI.runtimeconfig.json
+C:\OneD\OneDrive\Alg\23W\CST8259\Week 9 - 10\Lab6 - Complete\Lab6ServiceAPI\obj\Release\net6.0\PubTmp\Out\Lab6ServiceAPI.pdb
