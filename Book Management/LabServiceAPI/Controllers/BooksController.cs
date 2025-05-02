@@ -23,6 +23,7 @@ namespace Lab6ServiceAPI.Controllers
             string db = Environment.GetEnvironmentVariable("DB_NAME") ?? "Books";
 
             connectionString = $"server={host};port={port};user={user};password={pass};database={db}";
+
         }
 
         [HttpGet]
