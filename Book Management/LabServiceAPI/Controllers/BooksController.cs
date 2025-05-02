@@ -16,7 +16,7 @@ namespace Lab6ServiceAPI.Controllers
         public BooksController()
         {
             // Initialize the database connection string
-            connectionString = "server=127.0.0.1;port=3306;user=root;password=root;database=Books";
+            connectionString = "server=host.docker.internal;port=3306;user=root;password=root;database=Books";
         }
 
         [HttpGet]
