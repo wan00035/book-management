@@ -16,7 +16,13 @@ namespace Lab6ServiceAPI.Controllers
         public BooksController()
         {
             // Initialize the database connection string
-            connectionString = "server=127.0.0.1;port=3306;user=root;password=root;database=Books";
+            string host = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
+            string port = Environment.GetEnvironmentVariable("DB_PORT") ?? "3306";
+            string user = Environment.GetEnvironmentVariable("DB_USER") ?? "root";
+            string pass = Environment.GetEnvironmentVariable("DB_PASS") ?? "root";
+            string db = Environment.GetEnvironmentVariable("DB_NAME") ?? "Books";
+
+            connectionString = $"server={host};port={port};user={user};password={pass};database={db}";
         }
 
         [HttpGet]
