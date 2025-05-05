@@ -2,48 +2,50 @@
 
 A full-stack C# web application for managing a book collection, featuring:
 
-- ✅ **LabServiceAPI** – .NET 6 Web API with RESTful endpoints
-- ✅ **LabClient** – ASP.NET MVC frontend using Razor views
-- ✅ **MySQL** backend with sample data auto-loaded from SQL
-- ✅ **Docker Compose** for seamless local development and testing
+- ✅ **LabServiceAPI** – .NET 6 Web API with RESTful endpoints  
+- ✅ **LabClient** – ASP.NET MVC frontend using Razor views  
+- ✅ **MySQL** backend with sample data auto-loaded from SQL  
+- ✅ **Docker Compose** for seamless local development and testing  
 
 ---
 
-## 🔧 Project Structure
+# 🔧 Project Structure
 Book Management/
 ├── LabClient/             # ASP.NET MVC frontend
 ├── LabServiceAPI/         # .NET 6 Web API backend
 ├── data-samples/          # Books.sql, XML, XSD sample data
-├── docker-compose.yml     # Docker setup for API + DB
+├── docker-compose.yml     # Docker setup for API + DB + frontend
 └── README.md
 
 ---
 
 ## 🚀 How to Run with Docker
 
-> This will spin up the Web API and MySQL database locally.
+> This will spin up the frontend, Web API, and MySQL database locally.
 
 ### ✅ Step 1: Requirements
 
-- Docker & Docker Compose installed
-- Ensure ports `8081` (API) and `3307` (MySQL) are free
+- Docker & Docker Compose installed  
+- Ensure ports `8081` (API), `8082` (Client), and `3307` (MySQL) are free  
+
+---
 
 ### ✅ Step 2: Run the app
 
 ```bash
-docker compose down -v          # Clean up previous containers and data
-docker compose up --build       # Build and run API + MySQL
+docker compose down -v          # Optional: clean previous containers/volumes
+docker compose up --build       # Build and run frontend + API + DB
 ```
-✅ Step 3: Test the API
-Once running, visit:
-http://localhost:8081/books
-You should see a JSON array of book entries.
+✅ Step 3: Access the app
+🌐 Frontend: http://localhost:8082
+🔗 API (JSON): http://localhost:8081/books
 
- 📂 Sample Data
-📄 Books.sql: Initializes the Books database and creates the books table with 5 sample entries.
-📄 Books.xml: Sample book entries in XML format.
-📄 Books.xsd: XML schema file for validation.
-SQL is automatically executed on first startup via Docker volume bind.
+📂 Sample Data
+📄 Books.sql: Initializes the Books database with a books table and 5 sample entries
+📄 Books.xml: Optional XML version of sample entries
+📄 Books.xsd: XML schema for validation
+
+SQL file is auto-executed on container startup via Docker bind mount.
 
 ## 🔧 API Overview
 
