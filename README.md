@@ -2,7 +2,7 @@
 
 A full-stack C# web application for managing a book collection, featuring:
 
-- ✅ **LabServiceAPI** – .NET 6 Web API with RESTful endpoints  
+- ✅ **LabServiceAPI** – .NET 8 Web API with RESTful endpoints 
 - ✅ **LabClient** – ASP.NET MVC frontend using Razor views  
 - ✅ **MySQL** backend with sample data auto-loaded from SQL  
 - ✅ **Docker Compose** for seamless local development and testing  
@@ -12,7 +12,7 @@ A full-stack C# web application for managing a book collection, featuring:
 # 🔧 Project Structure
 Book Management/
 ├── LabClient/             # ASP.NET MVC frontend
-├── LabServiceAPI/         # .NET 6 Web API backend
+├── LabServiceAPI/         # .NET 8 Web API backend
 ├── data-samples/          # Books.sql, XML, XSD sample data
 ├── docker-compose.yml     # Docker setup for API + DB + frontend
 └── README.md
@@ -59,7 +59,7 @@ SQL file is auto-executed on container startup via Docker bind mount.
 
 
 🛠 Built With
-.NET 6
+.NET 8
 ASP.NET MVC
 MySQL
 Docker
