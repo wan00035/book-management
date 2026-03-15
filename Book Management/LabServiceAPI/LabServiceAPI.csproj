@@ -15,4 +15,7 @@
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+  </ItemGroup>
 </Project>

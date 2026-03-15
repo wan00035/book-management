@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab6ServiceAPI.Controllers
 {
@@ -25,7 +26,7 @@ namespace Lab6ServiceAPI.Controllers
             connectionString = $"server={host};port={port};user={user};password={pass};database={db}";
 
         }
-
+        [Authorize] //Only authenticated users can access this endpoint
         [HttpGet]
         public IActionResult Get()
         {
@@ -36,13 +37,14 @@ namespace Lab6ServiceAPI.Controllers
             }
             catch (Exception ex)
             {
-                
+
                 Console.WriteLine("Error: " + ex.Message);
                 return StatusCode(500, "Internal server error");
             }
         }
 
         //GET api/Books/5
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -123,6 +125,7 @@ namespace Lab6ServiceAPI.Controllers
         }
 
         // POST api/Books
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Post([FromBody] Book newBook)
         {
@@ -157,6 +160,7 @@ namespace Lab6ServiceAPI.Controllers
 
 
         //// PUT api/Books/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Book book)
         {
@@ -189,8 +193,9 @@ namespace Lab6ServiceAPI.Controllers
                 command.ExecuteNonQuery();
             }
         }
-
+       
         // DELETE api/Books/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
