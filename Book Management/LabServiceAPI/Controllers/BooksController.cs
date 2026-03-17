@@ -12,7 +12,7 @@ namespace Lab6ServiceAPI.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private string connectionString;
+        private readonly string connectionString;
 
         public BooksController()
         {
@@ -24,9 +24,12 @@ namespace Lab6ServiceAPI.Controllers
             string db = Environment.GetEnvironmentVariable("DB_NAME") ?? "Books";
 
             connectionString = $"server={host};port={port};user={user};password={pass};database={db}";
-
         }
-        [Authorize] //Only authenticated users can access this endpoint
+
+        // ==========================================
+        // GET: Retrieve all books
+        // ==========================================
+        [Authorize] // Only authenticated users can access this endpoint
         [HttpGet]
         public IActionResult Get()
         {
@@ -37,28 +40,94 @@ namespace Lab6ServiceAPI.Controllers
             }
             catch (Exception ex)
             {
-
-                Console.WriteLine("Error: " + ex.Message);
-                return StatusCode(500, "Internal server error");
+                Console.WriteLine("System Error: " + ex.Message);
+                return StatusCode(500, new { message = "Internal server error retrieving books." });
             }
         }
 
-        //GET api/Books/5
+        // ==========================================
+        // GET: Retrieve a specific book by ID
+        // ==========================================
         [Authorize]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Book book = GetBookById(id);
-            if (book != null)
+            try 
             {
-                return Ok(book);
+                Book book = GetBookById(id);
+                if (book != null)
+                {
+                    return Ok(book);
+                }
+                return NotFound(new { message = "Book not found." });
             }
-            else
+            catch (Exception ex)
             {
-                return NotFound();
+                Console.WriteLine("System Error: " + ex.Message);
+                return StatusCode(500, new { message = "Internal server error retrieving the book." });
             }
         }
 
+        // ==========================================
+        // POST: Add a new book
+        // ==========================================
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult Post([FromBody] Book newBook)
+        {
+            try
+            {
+                AddBookToDatabase(newBook);
+                return Ok(new { message = "Book added successfully." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("System Error: " + ex.Message);
+                return StatusCode(500, new { message = "Internal server error adding the book." });
+            }
+        }
+
+        // ==========================================
+        // PUT: Update an existing book
+        // ==========================================
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Book book)
+        {
+            try
+            {
+                UpdateBookInDatabase(id, book);
+                return Ok(new { message = "Book updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("System Error: " + ex.Message);
+                return StatusCode(500, new { message = "Internal server error updating the book." });
+            }
+        }
+
+        // ==========================================
+        // DELETE: Remove a book
+        // ==========================================
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                DeleteBookFromDatabase(id);
+                return Ok(new { message = "Book deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("System Error: " + ex.Message);
+                return StatusCode(500, new { message = "Internal server error deleting the book." });
+            }
+        }
+
+        // ==========================================
+        // Helper Methods (Database Operations)
+        // ==========================================
         private List<Book> GetBooksFromDatabase()
         {
             List<Book> books = new List<Book>();
@@ -66,33 +135,29 @@ namespace Lab6ServiceAPI.Controllers
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-
-              
-                string query = "SELECT BookID, Title, Author, PublicationYear, IsCheckedOut FROM books";
-                MySqlCommand command = new MySqlCommand(query, conn);
-
-                using (MySqlDataReader reader = command.ExecuteReader())
+                // FIX: Changed 'books' to 'Books'
+                string query = "SELECT BookID, Title, Author, PublicationYear, IsCheckedOut FROM Books";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
                 {
-                    while (reader.Read())
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        
-                        Book book = new Book
+                        while (reader.Read())
                         {
-                            BookID = reader.GetInt32("BookID"),
-                            Title = reader.GetString("Title"),
-                            Author = reader.GetString("Author"),
-                            PublicationYear = reader.GetDateTime("PublicationYear"),
-                            IsCheckedOut = reader.GetBoolean("IsCheckedOut")
-                        };
-
-                        books.Add(book);
+                            Book book = new Book
+                            {
+                                BookID = reader.GetInt32("BookID"),
+                                Title = reader.GetString("Title"),
+                                Author = reader.GetString("Author"),
+                                PublicationYear = reader.GetDateTime("PublicationYear"),
+                                IsCheckedOut = reader.GetBoolean("IsCheckedOut")
+                            };
+                            books.Add(book);
+                        }
                     }
                 }
             }
-
             return books;
         }
-
 
         private Book GetBookById(int id)
         {
@@ -101,44 +166,28 @@ namespace Lab6ServiceAPI.Controllers
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-
-                string query = $"SELECT BookID, Title, Author, PublicationYear, IsCheckedOut FROM books WHERE BookID = {id}";
-                MySqlCommand command = new MySqlCommand(query, conn);
-
-                using (MySqlDataReader reader = command.ExecuteReader())
+                // FIX: Changed 'books' to 'Books' and implemented parameterization
+                string query = "SELECT BookID, Title, Author, PublicationYear, IsCheckedOut FROM Books WHERE BookID = @BookID";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
                 {
-                    if (reader.Read())
+                    command.Parameters.AddWithValue("@BookID", id);
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        book = new Book
+                        if (reader.Read())
                         {
-                            BookID = reader.GetInt32("BookID"),
-                            Title = reader.GetString("Title"),
-                            Author = reader.GetString("Author"),
-                            PublicationYear = reader.GetDateTime("PublicationYear"),
-                            IsCheckedOut = reader.GetBoolean("IsCheckedOut")
-                        };
+                            book = new Book
+                            {
+                                BookID = reader.GetInt32("BookID"),
+                                Title = reader.GetString("Title"),
+                                Author = reader.GetString("Author"),
+                                PublicationYear = reader.GetDateTime("PublicationYear"),
+                                IsCheckedOut = reader.GetBoolean("IsCheckedOut")
+                            };
+                        }
                     }
                 }
             }
-
             return book;
-        }
-
-        // POST api/Books
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public IActionResult Post([FromBody] Book newBook)
-        {
-            try
-            {
-                AddBookToDatabase(newBook);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return StatusCode(500, "Internal server error");
-            }
         }
 
         private void AddBookToDatabase(Book book)
@@ -146,33 +195,16 @@ namespace Lab6ServiceAPI.Controllers
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-
-                string query = "INSERT INTO books (Title, Author, PublicationYear, IsCheckedOut) VALUES (@Title, @Author, @PublicationYear, @IsCheckedOut)";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@Title", book.Title);
-                command.Parameters.AddWithValue("@Author", book.Author);
-                command.Parameters.AddWithValue("@PublicationYear", book.PublicationYear);
-                command.Parameters.AddWithValue("@IsCheckedOut", book.IsCheckedOut);
-
-                command.ExecuteNonQuery();
-            }
-        }
-
-
-        //// PUT api/Books/5
-        [Authorize(Roles = "Admin")]
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Book book)
-        {
-            try
-            {
-                UpdateBookInDatabase(id, book);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return StatusCode(500, "Internal server error");
+                // FIX: Changed 'books' to 'Books'
+                string query = "INSERT INTO Books (Title, Author, PublicationYear, IsCheckedOut) VALUES (@Title, @Author, @PublicationYear, @IsCheckedOut)";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@Author", book.Author);
+                    command.Parameters.AddWithValue("@PublicationYear", book.PublicationYear);
+                    command.Parameters.AddWithValue("@IsCheckedOut", book.IsCheckedOut);
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -181,33 +213,17 @@ namespace Lab6ServiceAPI.Controllers
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-
-                string query = "UPDATE books SET Title = @Title, Author = @Author, PublicationYear = @PublicationYear, IsCheckedOut = @IsCheckedOut WHERE BookID = @BookID";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@Title", book.Title);
-                command.Parameters.AddWithValue("@Author", book.Author);
-                command.Parameters.AddWithValue("@PublicationYear", book.PublicationYear);
-                command.Parameters.AddWithValue("@IsCheckedOut", book.IsCheckedOut);
-                command.Parameters.AddWithValue("@BookID", id);
-
-                command.ExecuteNonQuery();
-            }
-        }
-       
-        // DELETE api/Books/5
-        [Authorize(Roles = "Admin")]
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                DeleteBookFromDatabase(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return StatusCode(500, "Internal server error");
+                // FIX: Changed 'books' to 'Books'
+                string query = "UPDATE Books SET Title = @Title, Author = @Author, PublicationYear = @PublicationYear, IsCheckedOut = @IsCheckedOut WHERE BookID = @BookID";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@Author", book.Author);
+                    command.Parameters.AddWithValue("@PublicationYear", book.PublicationYear);
+                    command.Parameters.AddWithValue("@IsCheckedOut", book.IsCheckedOut);
+                    command.Parameters.AddWithValue("@BookID", id);
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -216,14 +232,14 @@ namespace Lab6ServiceAPI.Controllers
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-
-                string query = "DELETE FROM books WHERE BookID = @BookID";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@BookID", id);
-
-                command.ExecuteNonQuery();
+                // FIX: Changed 'books' to 'Books'
+                string query = "DELETE FROM Books WHERE BookID = @BookID";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@BookID", id);
+                    command.ExecuteNonQuery();
+                }
             }
         }
     }
-
 }

@@ -5,12 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using LabClient.Models;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Net;
 using System.Net.Http.Headers;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
@@ -23,7 +21,6 @@ namespace LabClient.Controllers
         private IConfiguration _configuration;
         private string serviceUrl;
 
-        // Constructor to initialize configuration and service URL
         public HomeController(IConfiguration config)
         {
             _configuration = config;
@@ -34,15 +31,15 @@ namespace LabClient.Controllers
             }
         }
 
-        // Action for the Index page. Retrieves a list of books from the API.
+        // ==========================================
+        // 1. Books Overview (Index)
+        // ==========================================
         public IActionResult Index()
         {
             var token = HttpContext.Request.Cookies["AuthToken"];
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login");
-            }
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
 
+            // Extract Role for UI Rendering
             try
             {
                 var handler = new JwtSecurityTokenHandler();
@@ -52,60 +49,130 @@ namespace LabClient.Controllers
             }
             catch
             {
-               
                 return RedirectToAction("Login");
             }
-
 
             List<Book> bookList = new List<Book>(); 
             using (var httpClient = new HttpClient())
             {
-                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                string apiUrl = $"{serviceUrl}"; 
-                var response = httpClient.GetAsync(apiUrl).Result;
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = httpClient.GetAsync(serviceUrl).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonResponse = response.Content.ReadAsStringAsync().Result;
                     bookList = JsonSerializer.Deserialize<List<Book>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 }
-                else
+                else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                    {
-                        return RedirectToAction("Login");
-                    }
-                    return View("Error");
+                    return RedirectToAction("Login");
                 }
             }
             return View(bookList);
         }
 
+        // ==========================================
+        // 2. Borrow a Book
+        // ==========================================
+        public IActionResult Borrow(int id)
+        {
+            var token = HttpContext.Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                string borrowApiUrl = $"http://api:8080/api/borrow/{id}/borrow";
+                
+                var content = new StringContent("", Encoding.UTF8, "application/json");
+                var response = httpClient.PostAsync(borrowApiUrl, content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["SuccessMessage"] = "Book borrowed successfully!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failed to borrow. The book might be unavailable.";
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        // ==========================================
+        // 3. Return a Book
+        // ==========================================
+        public IActionResult Return(int id)
+        {
+            var token = HttpContext.Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                string returnApiUrl = $"http://api:8080/api/borrow/{id}/return";
+                
+                var content = new StringContent("", Encoding.UTF8, "application/json");
+                var response = httpClient.PostAsync(returnApiUrl, content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["SuccessMessage"] = "Book returned successfully!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failed to return. You might not have an active record for this book.";
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        // ==========================================
+        // 4. Admin Actions (New, Edit, Delete)
+        // ==========================================
+        public IActionResult New()
+        {
+            var token = HttpContext.Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult New(Book book)
+        {
+            if (!ModelState.IsValid) return View(book);
+            var token = HttpContext.Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var jsonContent = new StringContent(JsonSerializer.Serialize(book), Encoding.UTF8, "application/json");
+                var response = httpClient.PostAsync($"{serviceUrl}", jsonContent).Result;
+
+                if (response.IsSuccessStatusCode) return RedirectToAction("Index");
+                
+                ModelState.AddModelError(string.Empty, "Error occurred while saving data.");
+                return View(book);
+            }
+        }
+
         public IActionResult Edit(int? id)
         {
             if (id == null) return NotFound();
-
-
             var token = HttpContext.Request.Cookies["AuthToken"];
             if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
 
             Book book = null;
             using (var httpClient = new HttpClient())
             {
-              
-                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var response = httpClient.GetAsync($"{serviceUrl}/{id}").Result; 
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonResponse = response.Content.ReadAsStringAsync().Result;
                     book = JsonSerializer.Deserialize<Book>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 }
-                else
-                {
-                    return NotFound();
-                }
             }
-
             if (book == null) return NotFound();
             return View(book);
         }
@@ -114,74 +181,24 @@ namespace LabClient.Controllers
         public IActionResult Edit(Book book)
         {
             if (!ModelState.IsValid) return View(book);
-
-            
             var token = HttpContext.Request.Cookies["AuthToken"];
             if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
 
             using (var httpClient = new HttpClient())
             {
-             
-                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var jsonContent = JsonSerializer.Serialize(book, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 var response = httpClient.PutAsync($"{serviceUrl}/{book.BookID}", contentString).Result; 
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View("Error");
-                }
-            }
-        }
-
-        public IActionResult New()
-        {
-     
-            var token = HttpContext.Request.Cookies["AuthToken"];
-            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
-            
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult New(Book book)
-        {
-            if (!ModelState.IsValid) return View(book);
-
-          
-            var token = HttpContext.Request.Cookies["AuthToken"];
-            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
-
-            using (var httpClient = new HttpClient())
-            {
-            
-                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-                var jsonContent = new StringContent(JsonSerializer.Serialize(book), Encoding.UTF8, "application/json");
-                var response = httpClient.PostAsync($"{serviceUrl}", jsonContent).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "No permission or an error occurred while saving data");
-                    return View(book);
-                }
+                if (response.IsSuccessStatusCode) return RedirectToAction("Index");
+                return View("Error");
             }
         }
 
         public IActionResult Delete(int? id)
         {
             if (id == null) return NotFound();
-
-         
             var token = HttpContext.Request.Cookies["AuthToken"];
             if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
 
@@ -189,27 +206,21 @@ namespace LabClient.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-            
-                    httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     var response = httpClient.DeleteAsync($"{serviceUrl}/{id.Value}").Result;
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        return View("Error");
-                    }
+                    if (response.IsSuccessStatusCode) return RedirectToAction("Index");
+                    return View("Error");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return View("Error");
             }
         }
 
+        // ==========================================
+        // 5. Authentication (Login, Logout)
+        // ==========================================
         [HttpGet]
         public IActionResult Login()
         {
@@ -238,14 +249,12 @@ namespace LabClient.Controllers
                     Expires = DateTime.Now.AddHours(2)
                 };
                 HttpContext.Response.Cookies.Append("AuthToken", token, cookieOptions);
-
                 return RedirectToAction("Index");
             }
-            ViewBag.Error = " Invalid username or password";
+            ViewBag.Error = "Invalid username or password.";
             return View();
         }
 
- 
         public IActionResult Logout()
         {
             HttpContext.Response.Cookies.Delete("AuthToken");

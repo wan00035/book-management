@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS Books (
 INSERT INTO Books (Title, Author, PublicationYear, IsCheckedOut)
 VALUES 
 ('To Kill a Mockingbird', 'Harper Lee', '1960-01-01', FALSE),
-('1984', 'George Orwell', '1949-01-01', TRUE),
+('1984', 'George Orwell', '1949-01-01', FALSE),
 ('The Great Gatsby', 'F. Scott Fitzgerald', '1925-01-01', FALSE),
-('Pride and Prejudice', 'Jane Austen', '1813-01-01', TRUE),
+('Pride and Prejudice', 'Jane Austen', '1813-01-01', FALSE),
 ('Moby Dick', 'Herman Melville', '1851-01-01', FALSE);
 
 
@@ -40,6 +40,3 @@ CREATE TABLE IF NOT EXISTS BorrowRecords (
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (BookID) REFERENCES Books(BookID)
 );
-
-INSERT INTO BorrowRecords (UserID, BookID, BorrowDate, DueDate, ReturnDate) 
-VALUES (1, 2, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY), NULL);

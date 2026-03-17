@@ -5,34 +5,37 @@
 }
 
 <h1>Books Overview</h1>
-<a href="@Url.Action("Index", "Upload")">Go to Upload Page</a>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success fw-bold text-center mt-3">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger fw-bold text-center mt-3">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <div class="row mt-3">
     <div class="col-md-4">
         @if (ViewBag.Role == "Admin")
         {
-            <a asp-action="New" class="btn btn-primary">Add a New Book</a>
+            <a asp-action="New" class="btn btn-primary mb-3">Add a New Book</a>
         }
     </div>
-    <div class="col-md-8">
-        <span class="alert-info">@ViewBag.Confirmation</span>
-    </div>
 </div>
-<br />
 
-<table class="table table-striped">
-    <thead>
+<table class="table table-hover table-bordered align-middle text-center">
+    <thead class="table-dark">
         <tr>
             <th>Title</th>
             <th>Author</th>
             <th>Publication Year</th>
-            <th>Is Checked Out</th>
-            
-            @if (ViewBag.Role == "Admin")
-            {
-                <th>Actions</th>
-            }
-        </tr>
+            <th>Status</th>
+            <th>Actions</th> </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
@@ -41,15 +44,35 @@
                 <td>@item.Title</td>
                 <td>@item.Author</td>
                 <td>@item.PublicationYear.ToString("yyyy")</td>
-                <td>@(item.IsCheckedOut ? "Yes" : "No")</td>
                 
-                @if (ViewBag.Role == "Admin")
-                {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.BookID">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.BookID" data-name="@item.Title" class="delete text-danger">Delete</a>
-                    </td>
-                }
+                <td>
+                    @if (item.IsCheckedOut)
+                    {
+                        <span class="badge bg-danger">Checked Out</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Available</span>
+                    }
+                </td>
+                
+                <td>
+                    @if (!item.IsCheckedOut)
+                    {
+                        <a asp-action="Borrow" asp-route-id="@item.BookID" class="btn btn-sm btn-success">Borrow</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Return" asp-route-id="@item.BookID" class="btn btn-sm btn-warning">Return</a>
+                    }
+
+                    @if (ViewBag.Role == "Admin")
+                    {
+                        <span class="mx-2">|</span>
+                        <a asp-action="Edit" asp-route-id="@item.BookID" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.BookID" data-name="@item.Title" class="delete btn btn-sm btn-outline-danger">Delete</a>
+                    }
+                </td>
             </tr>
         }
     </tbody>
@@ -68,7 +91,7 @@
                 var link = $(this).attr('href');
                 var bookName = $(this).data('name');
 
-                if (confirm('Are you sure you want to delete this book: ' + bookName + '?')) {
+                if (confirm('Are you sure you want to delete the book: "' + bookName + '"?')) {
                     window.location.href = link;
                 }
             });
