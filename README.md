@@ -1,4 +1,4 @@
-、# 📚 Enterprise-Grade Book Management System
+📚 Enterprise-Grade Book Management System
 
 A robust, full-stack C# web application built with .NET 8, featuring role-based access control (RBAC), JWT authentication, and transaction-safe business logic. 
 
@@ -42,8 +42,9 @@ Run the following commands in your terminal:
 ```bash
 docker compose down -v
 docker compose up --build -d
+```
 
-Step 3: Access the Application
+**Step 3: Access the Application**
 
 Frontend UI: Open http://localhost:8082 in your browser.
 
@@ -55,14 +56,15 @@ Reader Account -> Username: reader | Password: 123
 
 Or easily register a new user directly from the UI!
 
-🔌 API Endpoints Overview
-Authentication (/api/auth)
+
+## 🔌 API Endpoints Overview
+**Authentication (/api/auth)**
 
 POST /register : Create a new user account.
 
 POST /login : Authenticate and receive a JWT token.
 
-Book Inventory (/api/books)
+**Book Inventory (/api/books)**
 
 GET / : Retrieve all books (Requires Auth).
 
@@ -74,7 +76,7 @@ PUT /{id} : Update book details (Admin Only).
 
 DELETE /{id} : Remove a book from the system (Admin Only).
 
-Borrowing System (/api/borrow)
+**Borrowing System (/api/borrow)**
 
 POST /{bookId}/borrow : Borrow a book (Transaction-safe).
 
@@ -84,4 +86,4 @@ GET /mybooks : Get the current user's active borrowed books.
 
 GET /all : Get the global borrowing log for all users (Admin Only).
 
-Created by Xiaona Wan for educational and portfolio purposes.
+## Created by Xiaona Wan for educational and portfolio purposes.
