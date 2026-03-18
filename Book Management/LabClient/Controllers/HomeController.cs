@@ -254,6 +254,30 @@ namespace LabClient.Controllers
             ViewBag.Error = "Invalid username or password.";
             return View();
         }
+     
+        public IActionResult MyBooks()
+        {
+            var token = HttpContext.Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
+
+            List<MyBookDto> myBooks = new List<MyBookDto>();
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                
+                // Fetch data from our new JOIN API
+                var response = httpClient.GetAsync("http://api:8080/api/borrow/mybooks").Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = response.Content.ReadAsStringAsync().Result;
+                    myBooks = JsonSerializer.Deserialize<List<MyBookDto>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+            }
+
+            return View(myBooks);
+        }
 
         public IActionResult Logout()
         {

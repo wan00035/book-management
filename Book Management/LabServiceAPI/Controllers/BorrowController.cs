@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims; // <-- Added this mandatory reference!
+using System.Security.Claims; 
+using LabServiceAPI.Models;
 
 namespace LabServiceAPI.Controllers
 {
@@ -23,9 +24,7 @@ namespace LabServiceAPI.Controllers
             _connectionString = $"server={host};port={port};user={user};password={pass};database={db}";
         }
 
-        // ==========================================
-        // API: Borrow a Book
-        // ==========================================
+    
         [HttpPost("{bookId}/borrow")]
         public IActionResult BorrowBook(int bookId)
         {
@@ -82,9 +81,7 @@ namespace LabServiceAPI.Controllers
             }
         }
 
-        // ==========================================
-        // API: Return a Book
-        // ==========================================
+
         [HttpPost("{bookId}/return")]
         public IActionResult ReturnBook(int bookId)
         {
@@ -150,10 +147,58 @@ namespace LabServiceAPI.Controllers
                 }
             }
         }
+       
+        [HttpGet("mybooks")]
+        public IActionResult GetMyBooks()
+        {
+            // 1. Extract username from token
+            string username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value 
+                              ?? User.FindFirst("sub")?.Value;
+                              
+            if (string.IsNullOrEmpty(username)) return Unauthorized(new { message = "Could not identify user from token." });
 
-        // ==========================================
-        // Helper Methods (Private)
-        // ==========================================
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                // 2. Get UserID
+                int userId = GetUserIdByUsername(conn, username);
+                if (userId == 0) return BadRequest(new { message = "User not found." });
+
+                List<MyBookDto> myBooks = new List<MyBookDto>();
+
+                // 3. 🌟 High-Value SQL: INNER JOIN Books and BorrowRecords
+                string query = @"
+                    SELECT br.RecordID, br.BookID, b.Title, b.Author, br.BorrowDate, br.DueDate 
+                    FROM BorrowRecords br
+                    INNER JOIN Books b ON br.BookID = b.BookID
+                    WHERE br.UserID = @UserID AND br.ReturnDate IS NULL
+                    ORDER BY br.DueDate ASC"; // Order by closest deadline
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            myBooks.Add(new MyBookDto
+                            {
+                                RecordID = reader.GetInt32("RecordID"),
+                                BookID = reader.GetInt32("BookID"),
+                                Title = reader.GetString("Title"),
+                                Author = reader.GetString("Author"),
+                                BorrowDate = reader.GetDateTime("BorrowDate"),
+                                DueDate = reader.GetDateTime("DueDate")
+                            });
+                        }
+                    }
+                }
+                return Ok(myBooks);
+            }
+        }
+
+        
         private int GetUserIdByUsername(MySqlConnection conn, string username)
         {
             string query = "SELECT UserID FROM Users WHERE Username = @Username";

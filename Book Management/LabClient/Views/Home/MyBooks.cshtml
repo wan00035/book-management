@@ -1,0 +1,68 @@
+@model List<LabClient.Models.MyBookDto>
+
+@{
+    ViewData["Title"] = "My Borrowed Books";
+}
+
+<h1 class="mb-4">My Borrowed Books</h1>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info text-center mt-4">
+        <h4>You haven't borrowed any books yet!</h4>
+        <p>Go back to the <a asp-action="Index">Books Overview</a> to find something interesting to read.</p>
+    </div>
+}
+else
+{
+    <table class="table table-hover table-bordered align-middle text-center shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Borrowed On</th>
+                <th>Due Date</th>
+                <th>Time Remaining</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                // Core UI Logic: Calculate days left
+                var today = DateTime.Now.Date;
+                var dueDate = item.DueDate.Date;
+                var daysLeft = (dueDate - today).Days;
+                
+                string badgeClass = "bg-success";
+                string statusText = $"{daysLeft} Days Left";
+
+                if (daysLeft < 0)
+                {
+                    badgeClass = "bg-danger";
+                    statusText = $"Overdue by {Math.Abs(daysLeft)} Days!";
+                }
+                else if (daysLeft <= 3)
+                {
+                    badgeClass = "bg-warning text-dark";
+                    statusText = $"Due in {daysLeft} Days";
+                }
+
+                <tr>
+                    <td class="fw-bold">@item.Title</td>
+                    <td>@item.Author</td>
+                    <td>@item.BorrowDate.ToString("yyyy-MM-dd")</td>
+                    <td>@item.DueDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <span class="badge @badgeClass px-3 py-2" style="font-size: 0.9rem;">
+                            @statusText
+                        </span>
+                    </td>
+                    <td>
+                        <a asp-action="Return" asp-route-id="@item.BookID" class="btn btn-sm btn-outline-primary fw-bold">Return Now</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
