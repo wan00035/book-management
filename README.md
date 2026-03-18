@@ -1,70 +1,87 @@
-# 📚 Book Management System
+、# 📚 Enterprise-Grade Book Management System
 
-A full-stack C# web application for managing a book collection, featuring:
+A robust, full-stack C# web application built with .NET 8, featuring role-based access control (RBAC), JWT authentication, and transaction-safe business logic. 
 
-- ✅ **LabServiceAPI** – .NET 8 Web API with RESTful endpoints 
-- ✅ **LabClient** – ASP.NET MVC frontend using Razor views  
-- ✅ **MySQL** backend with sample data auto-loaded from SQL  
-- ✅ **Docker Compose** for seamless local development and testing  
+## ✨ Key Features
 
----
+### 🔐 Security & Authentication
+- **JWT-Based Auth:** Secure login and registration system using JSON Web Tokens.
+- **Role-Based Access Control (RBAC):** Strict separation of privileges between `Admin` and standard `User` roles.
 
-# 🔧 Project Structure
-Book Management/
-├── LabClient/             # ASP.NET MVC frontend
-├── LabServiceAPI/         # .NET 8 Web API backend
-├── data-samples/          # Books.sql, XML, XSD sample data
-├── docker-compose.yml     # Docker setup for API + DB + frontend
-└── README.md
+### 👥 User Roles & Capabilities
+- **Admin Privileges:** - Full CRUD operations on the book inventory (Add, Edit, Delete).
+  - Access to a Global Borrowing Log (built with complex 3-table SQL INNER JOINs) to monitor all users, track due dates, and identify overdue books.
+- **Reader (User) Privileges:**
+  - Browse available books.
+  - Borrow and return books with real-time UI state updates.
+  - Access a personal "My Books" dashboard with dynamic countdowns for due dates.
 
----
+### 🛡️ Resilient Business Logic
+- **Database Transactions:** The borrow/return operations are wrapped in MySQL transactions to ensure data integrity and prevent "overselling" or concurrency anomalies.
+- **Defensive Programming:** Backend validation strictly prevents users from returning books they haven't borrowed or borrowing books already checked out.
 
-## 🚀 How to Run with Docker
+## 🚀 Tech Stack
+- **Backend:** .NET 8 Web API
+- **Frontend:** ASP.NET Core MVC (Razor Views)
+- **Database:** MySQL
+- **Infrastructure:** Docker & Docker Compose
 
-> This will spin up the frontend, Web API, and MySQL database locally.
+## 📂 Project Structure
+- `LabClient/` : ASP.NET MVC frontend application.
+- `LabServiceAPI/` : RESTful Web API backend.
+- `data-samples/` : Initialization scripts (`Books.sql`) for the database.
+- `docker-compose.yml` : Multi-container orchestration setup.
 
-### ✅ Step 1: Requirements
+## 🛠️ How to Run Locally
 
-- Docker & Docker Compose installed  
-- Ensure ports `8081` (API), `8082` (Client), and `3307` (MySQL) are free  
+**Step 1: Prerequisites**
+Ensure Docker and Docker Compose are installed on your machine. Ensure ports `8080` (API), `8082` (Client), and `3306` (MySQL) are available.
 
----
-
-### ✅ Step 2: Run the app
-
+**Step 2: Build and Run**
+Run the following commands in your terminal:
 ```bash
-docker compose down -v          # Optional: clean previous containers/volumes
-docker compose up --build       # Build and run frontend + API + DB
-```
-✅ Step 3: Access the app
-🌐 Frontend: http://localhost:8082
-🔗 API (JSON): http://localhost:8081/books
+docker compose down -v
+docker compose up --build -d
 
-📂 Sample Data
-📄 Books.sql: Initializes the Books database with a books table and 5 sample entries
-📄 Books.xml: Optional XML version of sample entries
-📄 Books.xsd: XML schema for validation
+Step 3: Access the Application
 
-SQL file is auto-executed on container startup via Docker bind mount.
+Frontend UI: Open http://localhost:8082 in your browser.
 
-## 🔧 API Overview
+Default Test Accounts:
 
-| Endpoint        | Method | Description           |
-|-----------------|--------|-----------------------|
-| /books          | GET    | Get all books         |
-| /books/{id}     | GET    | Get a book by ID      |
-| /books          | POST   | Add a new book        |
-| /books/{id}     | PUT    | Update an existing book |
-| /books/{id}     | DELETE | Delete a book by ID   |
+Admin Account -> Username: admin | Password: 123
 
+Reader Account -> Username: reader | Password: 123
 
-🛠 Built With
-.NET 8
-ASP.NET MVC
-MySQL
-Docker
-Visual Studio / Rider
+Or easily register a new user directly from the UI!
 
+🔌 API Endpoints Overview
+Authentication (/api/auth)
 
-📜 Author
-Created by xiaona wan for educational and portfolio purposes.
+POST /register : Create a new user account.
+
+POST /login : Authenticate and receive a JWT token.
+
+Book Inventory (/api/books)
+
+GET / : Retrieve all books (Requires Auth).
+
+GET /{id} : Retrieve a specific book (Requires Auth).
+
+POST / : Add a new book (Admin Only).
+
+PUT /{id} : Update book details (Admin Only).
+
+DELETE /{id} : Remove a book from the system (Admin Only).
+
+Borrowing System (/api/borrow)
+
+POST /{bookId}/borrow : Borrow a book (Transaction-safe).
+
+POST /{bookId}/return : Return a borrowed book.
+
+GET /mybooks : Get the current user's active borrowed books.
+
+GET /all : Get the global borrowing log for all users (Admin Only).
+
+Created by Xiaona Wan for educational and portfolio purposes.
