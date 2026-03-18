@@ -86,4 +86,4 @@ GET /mybooks : Get the current user's active borrowed books.
 
 GET /all : Get the global borrowing log for all users (Admin Only).
 
-## Created by Xiaona Wan for educational and portfolio purposes.
+Created by Xiaona Wan for educational and portfolio purposes.
