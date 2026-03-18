@@ -31,9 +31,7 @@ namespace LabClient.Controllers
             }
         }
 
-        // ==========================================
-        // 1. Books Overview (Index)
-        // ==========================================
+    
         public IActionResult Index()
         {
             var token = HttpContext.Request.Cookies["AuthToken"];
@@ -70,9 +68,7 @@ namespace LabClient.Controllers
             return View(bookList);
         }
 
-        // ==========================================
-        // 2. Borrow a Book
-        // ==========================================
+       
         public IActionResult Borrow(int id)
         {
             var token = HttpContext.Request.Cookies["AuthToken"];
@@ -98,9 +94,7 @@ namespace LabClient.Controllers
             return RedirectToAction("Index");
         }
 
-        // ==========================================
-        // 3. Return a Book
-        // ==========================================
+   
         public IActionResult Return(int id)
         {
             var token = HttpContext.Request.Cookies["AuthToken"];
@@ -126,9 +120,7 @@ namespace LabClient.Controllers
             return RedirectToAction("Index");
         }
 
-        // ==========================================
-        // 4. Admin Actions (New, Edit, Delete)
-        // ==========================================
+  
         public IActionResult New()
         {
             var token = HttpContext.Request.Cookies["AuthToken"];
@@ -218,18 +210,13 @@ namespace LabClient.Controllers
             }
         }
 
-        // ==========================================
-        // 5. Authentication (Login, Logout)
-        // ==========================================
+
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        // ==========================================
-        // ACTION: Registration
-        // ==========================================
         [HttpGet]
         public IActionResult Register()
         {
@@ -295,7 +282,7 @@ namespace LabClient.Controllers
             ViewBag.Error = "Invalid username or password.";
             return View();
         }
-     
+
         public IActionResult MyBooks()
         {
             var token = HttpContext.Request.Cookies["AuthToken"];
@@ -306,7 +293,7 @@ namespace LabClient.Controllers
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                
+
                 // Fetch data from our new JOIN API
                 var response = httpClient.GetAsync("http://api:8080/api/borrow/mybooks").Result;
 
@@ -318,6 +305,35 @@ namespace LabClient.Controllers
             }
 
             return View(myBooks);
+        }
+
+        public IActionResult AdminRecords()
+        {
+            var token = HttpContext.Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token)) return RedirectToAction("Login");
+
+            List<AdminBorrowRecordDto> allRecords = new List<AdminBorrowRecordDto>();
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                
+                // Fetch data from the Admin-only API
+                var response = httpClient.GetAsync("http://api:8080/api/borrow/all").Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = response.Content.ReadAsStringAsync().Result;
+                    allRecords = JsonSerializer.Deserialize<List<AdminBorrowRecordDto>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+                else 
+                {
+                    // If a normal user tries to access this, kick them back to Index
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View(allRecords);
         }
 
         public IActionResult Logout()

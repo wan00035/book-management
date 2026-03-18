@@ -221,6 +221,49 @@ namespace LabServiceAPI.Controllers
             }
         }
 
+        [HttpGet("all")]
+        [Authorize(Roles = "Admin")] // 🔒 STRICTLY ADMIN ONLY
+        public IActionResult GetAllRecords()
+        {
+            List<AdminBorrowRecordDto> records = new List<AdminBorrowRecordDto>();
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                // 🌟 Advanced SQL: 3-Table INNER JOIN
+                string query = @"
+                    SELECT br.RecordID, u.Username, b.Title, br.BorrowDate, br.DueDate, br.ReturnDate 
+                    FROM BorrowRecords br
+                    INNER JOIN Books b ON br.BookID = b.BookID
+                    INNER JOIN Users u ON br.UserID = u.UserID
+                    ORDER BY br.BorrowDate DESC"; 
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            records.Add(new AdminBorrowRecordDto
+                            {
+                                RecordID = reader.GetInt32("RecordID"),
+                                Username = reader.GetString("Username"),
+                                Title = reader.GetString("Title"),
+                                BorrowDate = reader.GetDateTime("BorrowDate"),
+                                DueDate = reader.GetDateTime("DueDate"),
+                                // Handle nullable ReturnDate safely
+                                ReturnDate = reader.IsDBNull(reader.GetOrdinal("ReturnDate")) 
+                                             ? (DateTime?)null 
+                                             : reader.GetDateTime("ReturnDate")
+                            });
+                        }
+                    }
+                }
+                return Ok(records);
+            }
+        }
+
         private bool HasActiveBorrowRecord(MySqlConnection conn, int userId, int bookId)
         {
             string query = "SELECT COUNT(1) FROM BorrowRecords WHERE UserID = @UserID AND BookID = @BookID AND ReturnDate IS NULL";

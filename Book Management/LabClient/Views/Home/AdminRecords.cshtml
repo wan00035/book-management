@@ -1,0 +1,49 @@
+@model List<LabClient.Models.AdminBorrowRecordDto>
+
+@{
+    ViewData["Title"] = "Admin Dashboard - All Records";
+}
+
+<h1 class="mb-4">Global Borrowing Log</h1>
+
+<table class="table table-hover table-bordered align-middle text-center shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>Record ID</th>
+            <th>Reader</th>
+            <th>Book Title</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-muted">#@item.RecordID</td>
+                <td class="fw-bold text-primary">@item.Username</td>
+                <td class="fw-bold">@item.Title</td>
+                <td>@item.BorrowDate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@item.DueDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    @if (item.ReturnDate.HasValue)
+                    {
+                        <span class="badge bg-success">Returned on @item.ReturnDate.Value.ToString("MM-dd HH:mm")</span>
+                    }
+                    else
+                    {
+                        if (DateTime.Now > item.DueDate)
+                        {
+                            <span class="badge bg-danger">OVERDUE</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Currently Borrowed</span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LabClient</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent"     aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -32,16 +32,27 @@
                                 <a class="nav-link text-dark fw-bold text-primary" asp-area="" asp-controller="Home"
                                    asp-action="MyBooks">My Books</a>
                             </li>
+                            @if (ViewBag.Role == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link fw-bold text-danger" asp-area="" asp-controller="Home"
+                                      asp-action="AdminRecords">Admin Log</a>
+                                </li>
+                                  
+                            }
+
+
                         </ul>
                     </ul>
 
                     <ul class="navbar-nav">
-                        @if (Context.Request.Cookies["AuthToken"] != null)
-                        {
+                        @if(Context.Request.Cookies["AuthToken"] != null)
+                                            {
                             <li class="nav-item">
                                 <a class="nav-link text-danger fw-bold" asp-area="" asp-controller="Home"
-                                   asp-action="Logout">Logout</a>
+                                 asp-action="Logout">Logout</a>
                             </li>
+                       
                         }
                     </ul>
                 </div>
