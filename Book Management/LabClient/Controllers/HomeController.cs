@@ -227,6 +227,47 @@ namespace LabClient.Controllers
             return View();
         }
 
+        // ==========================================
+        // ACTION: Registration
+        // ==========================================
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(string username, string password)
+        {
+            using var _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            
+            var registerData = new { Username = username, Password = password };
+            var content = new StringContent(JsonSerializer.Serialize(registerData), Encoding.UTF8, "application/json");
+
+            // Send POST request to our new Backend Register API
+            var response = await _httpClient.PostAsync("http://api:8080/api/auth/register", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Registration successful! Redirect the user straight to the Login page
+                TempData["SuccessMessage"] = "Account created successfully! Please log in.";
+                return RedirectToAction("Login");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                // Username is already taken
+                ViewBag.Error = "Username is already taken. Please choose another one.";
+            }
+            else 
+            {
+                // Other server errors
+                ViewBag.Error = "An error occurred during registration. Please try again.";
+            }
+            
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {

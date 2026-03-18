@@ -9,10 +9,18 @@
                 <h4 class="mb-0">📚 Book Management System</h4>
             </div>
             <div class="card-body p-4">
+                
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success py-2 text-center fw-bold">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
                 <form action="/Home/Login" method="post">
                     <div class="form-group mb-3">
                         <label for="Username" class="form-label">User</label>
-                        <input type="text" class="form-control" id="Username" name="username" placeholder="user " required>
+                        <input type="text" class="form-control" id="Username" name="username" placeholder="user" required>
                     </div>
                     <div class="form-group mb-4">
                         <label for="Password" class="form-label">Password</label>
@@ -21,13 +29,19 @@
                     
                     @if (ViewBag.Error != null)
                     {
-                        <div class="alert alert-danger py-2">
+                        <div class="alert alert-danger py-2 text-center">
                             @ViewBag.Error
                         </div>
                     }
 
-                    <button type="submit" class="btn btn-primary w-100">Login in</button>
+                    <button type="submit" class="btn btn-primary w-100 fw-bold">Login</button>
                 </form>
+
+                <div class="text-center mt-3">
+                    <span class="text-muted">Don't have an account?</span>
+                    <a asp-action="Register" class="text-decoration-none fw-bold">Sign up here</a>
+                </div>
+
             </div>
         </div>
     </div>
